@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import Characters from './components/Characters';
+import { QueryClientProvider, QueryClient } from "react-query";
+
+// so we can use useQuery on Characters.js we need to add the QueryClient 
+// and wrap our app with QueryClientProvider
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='container'>
+        <h1>Rick and Morty</h1>
+        {/* wrap our app with QueryClientProvider */}
+        <QueryClientProvider client={queryClient}>
+          <Characters />
+        </QueryClientProvider>
+      </div>
     </div>
   );
 }
